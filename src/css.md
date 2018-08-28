@@ -11,19 +11,34 @@ files: /js/demo.js,/css/demo.css
 
 [slide]
 
-# 封面样式2 {:&.flexbox.vleft}
-## 左对齐
+# 全景图
+
+[slide]
+
+# css攻击 {:&.flexbox.vleft}
+## url()： background content
 
 [slide style="background-image:url('/img/bg1.png')"]
 
 ## 使用背景
+## BFC
+## GFC
+## IFC
+## FFC
 
 [slide]
 ## 使用.class/#id/自定义属性样式
 ----
 
-```javascript
+```js
 alert('nodeppt');
+```
+
+```css
+.stage {
+  width: 600px;
+  height: 500px;
+}
 ```
 
 [slide]

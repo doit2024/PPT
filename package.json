@@ -1,0 +1,23 @@
+{
+  "name": "PPT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodeppt start -d src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niuDazhuang/PPT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/niuDazhuang/PPT/issues"
+  },
+  "homepage": "https://github.com/niuDazhuang/PPT#readme",
+  "devDependencies": {
+    "nodeppt": "^1.4.5"
+  }
+}
