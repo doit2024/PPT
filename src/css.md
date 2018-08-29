@@ -13,11 +13,6 @@ files: /js/demo.js,/css/demo.css
 
 # 全景图
 
-[slide]
-
-# css攻击 {:&.flexbox.vleft}
-## url()： background content
-
 [slide style="background-image:url('/img/bg1.png')"]
 
 ## 使用背景
@@ -27,23 +22,25 @@ files: /js/demo.js,/css/demo.css
 ## FFC
 
 [slide]
-## 使用.class/#id/自定义属性样式
+## 埋点统计
 ----
 
-```js
-alert('nodeppt');
-```
-
 ```css
-.stage {
-  width: 600px;
-  height: 500px;
+.link:active::after {
+  margin: 100px 100px;
+  color: red;
+  content: url(http://192.168.1.100:8888/count.php?action=visit);
 }
 ```
 
 [slide]
 
-## 主页面样式
+# css攻击 {:&.flexbox.vleft}
+## url()： background content
+
+[slide]
+
+## 性能优化
 ### ----是上下分界线
 ----
 
