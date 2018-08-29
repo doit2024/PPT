@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodeppt start -d src"
+    "new": "cd src && nodeppt new",
+    "start": "nodeppt start -d src",
+    "demo": "cd demo && npm start"
   },
   "repository": {
     "type": "git",
