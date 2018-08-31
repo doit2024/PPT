@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>houdini demo</title>
+    <style>
+        body{
+            margin: 0;
+            font-size: 24px;
+            background: #000;
+        }
+        body::before{
+            position: absolute;
+            content: "";
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            --star-density:0.8;
+            --star-opacity:1;
+            background-image: paint(yd-sky);
+        }
+        body::before{
+            animation: shine 1s linear alternate infinite;
+        }
+        @keyframes shine {
+            from{
+                opacity: 1;
+            }
+            to{
+                opacity: 0.4;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        if(!CSS in window || !CSS.paintWorklet){
+            document.write("不支持 Houdini");
+        }else{
+            CSS.paintWorklet.addModule("sky.js");
+        }
+    </script>
+</body>
+</html>
