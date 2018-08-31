@@ -11,6 +11,15 @@ files: /js/demo.js,/css/demo.css
 
 [slide]
 
+# Less
+
+[slide]
+
+# houdini
+## 仅支持 localhost 或 https
+
+[slide]
+
 # 全景图
 
 [slide style="background-image:url('/img/bg1.png')"]
