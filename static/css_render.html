@@ -1,0 +1,26 @@
+
+<title>css渲染测试</title>
+
+<script>
+// html自上而下解析
+testTop();
+// CSS加载不阻塞dom树的生成
+setTimeout(testTop, 0);
+function testTop () {
+  console.log('___dom_tree_first___', document.querySelectorAll('h3'));
+}
+</script>
+
+<!-- CSS加载与解析 -->
+<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
+
+<!-- CSS解析后与DOM树组合成渲染树 -->
+<h3 id="header">page header</h3>
+
+<script>
+// CSS加载阻塞后面的js
+testBottom();
+function testBottom () {
+  console.log('___bottom_js_done___');
+}
+</script>

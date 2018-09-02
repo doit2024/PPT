@@ -7,7 +7,8 @@
     "new": "cd src && nodeppt new",
     "start": "nodeppt start -d src",
     "demo": "cd demo && npm start",
-    "server": "node server/app.js"
+    "server": "node server/app.js",
+    "static": "hs static"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/niuDazhuang/PPT#readme",
   "devDependencies": {
+    "http-server": "^0.11.1",
     "nodeppt": "^1.4.5"
   }
 }

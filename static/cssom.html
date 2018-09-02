@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="css/cssom_orange.css">
+<link rel="stylesheet" href="css/cssom_brown.css">
+<link rel="stylesheet" href="css/cssom_pink.css">
+
+<button onclick="changeStylesheet(0)">orange</button>
+<button onclick="changeStylesheet(1)">brown</button>
+<button onclick="changeStylesheet(2)">pink</button>
+
+<script>
+function changeStylesheet (index) {
+  let ss = document.styleSheets;
+  for (let s of ss) {
+    if (!s.disabled) s.disabled = true
+  }
+  ss[index].disabled = false
+}
+</script>
