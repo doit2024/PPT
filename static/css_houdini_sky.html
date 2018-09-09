@@ -4,28 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>houdini</title>
+  <title>Document</title>
   <style>
-    body {
-      margin: 0;
+    body { margin: 0; }
+    #app {
       color: #fff;
-    }
-    body::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100vw;
       height: 100vh;
-      --density: 0.8;
-      --opacity: 1;
-      background-image: paint(sky)
+      --star-density: 0.0001;
+      background-image: paint(sky);
     }
   </style>
 </head>
 <body>
+  <div id="app">hello sky</div>
   <script>
-    CSS.paintWorklet.addModule('sky.js')  
+    CSS.paintWorklet.addModule('js/sky.js')
   </script>
 </body>
 </html>

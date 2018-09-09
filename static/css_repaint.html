@@ -1,0 +1,32 @@
+<style>
+.sizer {
+  width: 100px;
+  height: 50px;
+  background: #f80;
+  color: #fff;
+}
+.item {
+  border-top: 1px solid #ddd;
+}
+</style>
+
+<div class="sizer">sizer</div>
+<button class="set-size">set size</button>
+ul>li.item*100
+
+<script>
+(function() {
+  // noprotect
+  var sizer = document.querySelector('.sizer');
+  document.querySelector('.set-size').addEventListener('click', function(event) {
+    var ps = document.querySelectorAll('.item');
+    var i = ps.length;
+    var size;
+    while (i--) {
+      finalHeight = sizer.offsetHeight;
+      ps[i].style.height = finalHeight + 'px';
+    }
+    event.preventDefault();
+  });
+}());
+</script>

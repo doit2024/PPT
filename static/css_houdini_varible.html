@@ -1,0 +1,38 @@
+<style>
+  :root {
+    --theme-color: #6161f1;
+  }
+  .btn {
+    --height: 40px;
+    --font-size: 16px;
+    color: #fff;
+    font-size: var(--font-size);
+    height: var(--height);
+    background: var(--theme-color);
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+  }
+  .btn-small {
+    --height: 32px;
+    --font-size: 14px;
+  }
+  .btn-mini {
+    --height: 28px;
+    --font-size: 12px;
+  }
+  .btn-warning {
+    --theme-color: #f80;
+  }
+  .btn-danger {
+    --theme-color: red;
+  }
+</style>
+
+<button class="btn">primary</button>
+<button class="btn btn-danger">danger</button>
+<button class="btn btn-warning">warning</button>
+<button class="btn btn-small">small</button>
+<button class="btn btn-mini">mini</button>
