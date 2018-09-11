@@ -10,6 +10,12 @@ files: /js/demo.js,/css/demo.css
 
 [slide]
 
+# Less
+----
+* 「demo: demo/less」
+
+[slide]
+
 #####《WebKit技术内幕》
 ----
 * ... -> DOM树 -> <orange>CSS解释器</orange> -> RenderObject树 -> ... {:&.rollIn}
@@ -26,7 +32,7 @@ files: /js/demo.js,/css/demo.css
 * Paint: 排列后重绘变化元素
 * Composite: 重新合成所有元素
 
-* demo: static/css_repaint
+* 「demo: static/css_repaint」
 
 [slide]
 
@@ -89,12 +95,12 @@ CSS.paintWorklet.addModule('simpleRect.js')
 [slide]
 
 # [css-doodle](http://www.w3cplus.com/css/create-patterns-with-css-doodle.html)
-
-[slide]
-
-# Less
 ----
-* 「demo: demo/less」
+* 「demo: static/css_houdini_sky」
+
+[slide style="background-image:url('/img/bg1.png')"]
+
+# 全景图
 
 [slide style="background-image:url('/img/bg1.png')"]
 
@@ -102,10 +108,6 @@ CSS.paintWorklet.addModule('simpleRect.js')
 ## GFC
 ## IFC
 ## FFC
-
-[slide style="background-image:url('/img/bg1.png')"]
-
-# 全景图
 
 [slide style="background-image:url('/img/bg1.png')"]
 

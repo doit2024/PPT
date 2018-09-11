@@ -6,9 +6,7 @@
   "scripts": {
     "new": "cd src && nodeppt new",
     "start": "nodeppt start -d src",
-    "demo": "cd demo && npm start",
-    "server": "node server/app.js",
-    "static": "hs static"
+    "demo": "cd demo && npm start"
   },
   "repository": {
     "type": "git",

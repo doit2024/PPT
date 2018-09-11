@@ -7,6 +7,7 @@
     <button class="btn">3</button>
     <button class="btn">4</button>
     <button class="btn">5</button>
+    <button class="btn">6</button>
   </div>
 </template>
 
