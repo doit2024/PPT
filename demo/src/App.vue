@@ -1,5 +1,8 @@
 <template>
+<div class="a">
+  <Less/>
   <router-view/>
+</div>
 </template>
 
 <style>
