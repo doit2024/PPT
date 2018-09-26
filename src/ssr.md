@@ -30,6 +30,7 @@ files: /js/demo.js,/css/demo.css
 # 前提须知
 ----
 * side: server/client (data-server-rendered="true")
+* mode: history
 * server钩子: beforeCreate 和 created
 * asyncData
 * 避免状态单例, 交叉污染
