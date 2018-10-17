@@ -7,12 +7,24 @@
   <title>网格</title>
 </head>
 <body>
-  <canvas id="can"></canvas>
+  <canvas id="rectangle"></canvas>
+  <canvas id="sudoku"></canvas>
   <script src="draw.js"></script>
+
   <script>
-    const rect = new Rectangle('#can');
-    rect.draw({lng: 5, wdth: 3});
-    // rect.draw({lng: 7, wdth: 6, size: 30, color: '#ddd'});
+    const rect = new Rectangle({el: '#rectangle', lng: 5, wdth: 3});
+    rect.draw();
   </script>
+
+  <script>
+    const sudoku = new Sudoku({el: '#sudoku', lng: 9, wdth: 9, size: 50});
+    new TestSudoku(sudoku)
+    sudoku.draw()
+    sudoku.fillText()
+    sudoku.addInput()
+    console.log(sudoku.data);
+    console.log(sudoku.dataMap);
+  </script>
+
 </body>
 </html>
