@@ -35,10 +35,11 @@ class Rectangle {
 class Sudoku extends Rectangle {
   constructor (args) {
     super(args)
+    this.ratio = this.ratio || 0
     this.cellSize = 3
     this.SIZE = Math.pow(this.cellSize, 2)
     this.data = this.genData()
-    this.dataMap = this.getDataMap(0.5)
+    this.dataMap = this.getDataMap(this.ratio)
     this.swapRow(100) 
     this.swapCol(100)
   }
@@ -127,6 +128,10 @@ class Sudoku extends Rectangle {
       })
       document.body.appendChild(inp)
     })
+  }
+  // 校验答案
+  check () {
+    return this.dataMap.every(item => item.every(v => v.v === Number(v.inp)))
   }
 }
 // 生成逻辑

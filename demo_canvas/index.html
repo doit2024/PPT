@@ -17,13 +17,14 @@
   </script>
 
   <script>
-    const sudoku = new Sudoku({el: '#sudoku', lng: 9, wdth: 9, size: 50});
+    const sudoku = new Sudoku({el: '#sudoku', lng: 9, wdth: 9, size: 50, ratio: 0.5});
     new TestSudoku(sudoku)
     sudoku.draw()
     sudoku.fillText()
     sudoku.addInput()
     console.log(sudoku.data);
     console.log(sudoku.dataMap);
+    console.log(sudoku.check());
   </script>
 
 </body>
