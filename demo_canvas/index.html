@@ -7,24 +7,31 @@
   <title>网格</title>
 </head>
 <body>
-  <canvas id="rectangle"></canvas>
+  <button onclick="check()">提交</button>
+  <button onclick="getAnswer()">看答案</button>
+  <br>
   <canvas id="sudoku"></canvas>
+  <canvas id="answer"></canvas>
+
   <script src="draw.js"></script>
-
   <script>
-    const rect = new Rectangle({el: '#rectangle', lng: 5, wdth: 3});
-    rect.draw();
-  </script>
-
-  <script>
-    const sudoku = new Sudoku({el: '#sudoku', lng: 9, wdth: 9, size: 50, ratio: 0.5});
-    new TestSudoku(sudoku)
-    sudoku.draw()
-    sudoku.fillText()
-    sudoku.addInput()
-    console.log(sudoku.data);
-    console.log(sudoku.dataMap);
-    console.log(sudoku.check());
+    function draw (el, ratio) {
+      const sudoku = new Sudoku({el, lng: 9, wdth: 9, size: 50, ratio});
+      new TestSudoku(sudoku);
+      sudoku.draw();
+      sudoku.fillText();
+      sudoku.addInput();
+      console.log(sudoku.data);
+      console.log(sudoku.dataMap);
+      return sudoku
+    }
+    const sudoku = draw('#sudoku', 0.5)
+    function check () {
+      console.log(sudoku.check() ? '成功' : '失败');  
+    }
+    function getAnswer () {
+      sudoku.showAnswer('#answer')
+    }
   </script>
 
 </body>

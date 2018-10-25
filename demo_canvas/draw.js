@@ -1,3 +1,13 @@
+const util = {
+  swap (arr, a, b) {
+    arr[a] = arr.splice(b, 1, arr[a])[0]
+    return arr
+  },
+  random (size) {
+    return ~~(Math.random() * size)
+  }
+}
+
 class Rectangle {
   constructor (opts) {
     Object.assign(this, {
@@ -38,22 +48,71 @@ class Sudoku extends Rectangle {
     this.ratio = this.ratio || 0
     this.cellSize = 3
     this.SIZE = Math.pow(this.cellSize, 2)
-    this.data = this.genData()
+    this.data = this.genData(this.getNineNum())
     this.dataMap = this.getDataMap(this.ratio)
-    this.swapRow(100) 
-    this.swapCol(100)
   }
-  fillText () {
+  fillText (ins) {
+    if (ins) this.ctx = ins.ctx
     this.ctx.font = '25px Georgia'
     this.ctx.textAlign = 'center'
     this.ctx.textBaseline = 'middle'
     this.dataMap.map(item => item.map(({v, x, y, show}) => {
-      show && this.ctx.fillText(v, x, y)
+      if (ins) {
+        this.ctx.fillText(v, x, y)
+      } else {
+        show && this.ctx.fillText(v, x, y)
+      }
     }))
   }
-  genData () {
-    let data = Array.from({length: this.SIZE}, () => Array.from({length: this.SIZE}, () => 0))
-    return data.map((item, i) => item.map((v, j) => this.SIZE - (~~(i/this.cellSize) + (i%this.cellSize)*this.cellSize + j + 1) % this.SIZE))
+  showAnswer (el) {
+    const answerBox = new Rectangle({el, lng: 9, wdth: 9, size: 50})
+    answerBox.draw()
+    this.fillText(answerBox)
+  }
+  genData ([a, b, c, d, e, f, g, h, i]) {
+    let rst = [
+      [a, b, c, d, e, f, g, h, i],
+      [d, e, f, g, h, i, a, b, c],
+      [g, h, i, a, b, c, d, e, f],
+      [b, c, d, e, f, g, h, i, a],
+      [e, f, g, h, i, a, b, c, d],
+      [h, i, a, b, c, d, e, f, g],
+      [c, d, e, f, g, h, i, a, b],
+      [f, g, h, i, a, b, c, d, e],
+      [i, a, b, c, d, e, f, g, h]
+    ]
+    this.swapRow(rst, 10)
+    this.swapCol(rst, 10)
+    return rst
+  }
+  swapRow (data, count) {
+    for (let i = 0; i < count; i++) {
+      const [a, b] = this.getSwapIndex()
+      util.swap(data, a, b)
+    }
+  }
+  swapCol (data, count) {
+    for (let i = 0; i < count; i++) {
+      const [a, b] = this.getSwapIndex()
+      data = data.map(v => util.swap(v, a, b))
+    }
+  }
+  getSwapIndex () {
+    const start = util.random(this.cellSize) * 3
+    let arr = Array.from({length: this.cellSize}, (v, i) => start + i)
+    const aIndex = util.random(this.cellSize)
+    const a = arr.splice(aIndex, 1)[0]
+    const bIndex = util.random(this.cellSize - 1)
+    const b = arr[bIndex]
+    return [a, b]
+  }
+  getNineNum () {
+    let rst = []
+    let baseData = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    while (baseData.length) {
+      rst.push(baseData.splice(util.random(baseData.length), 1)[0])
+    }
+    return rst
   }
   getDataMap (ratio) {
     return this.data.map((item, i) => item.map((v, j) => {
@@ -66,34 +125,6 @@ class Sudoku extends Rectangle {
         inp: show ? v : ''
       }
     }))
-  }
-  swapRow (count) {
-    for (let i = 0; i < count; i++) {
-      const [a, b] = this.getSwapIndex()
-      this.swap(this.data, a, b)
-    }
-  }
-  swapCol (count) {
-    for (let i = 0; i < count; i++) {
-      const [a, b] = this.getSwapIndex()
-      this.data = this.data.map(v => this.swap(v, a, b))
-    }
-  }
-  swap (arr, a, b) {
-    arr[a] = arr.splice(b, 1, arr[a])[0]
-    return arr
-  }
-  getSwapIndex () {
-    const start = this.random(this.cellSize) * 3
-    let arr = Array.from({length: this.cellSize}, (v, i) => start + i)
-    const aIndex = this.random(this.cellSize)
-    const a = arr.splice(aIndex, 1)[0]
-    const bIndex = this.random(this.cellSize - 1)
-    const b = arr[bIndex]
-    return [a, b]
-  }
-  random (size) {
-    return ~~(Math.random() * size)
   }
   // 点击输入 
   addInput () {
@@ -134,37 +165,6 @@ class Sudoku extends Rectangle {
     return this.dataMap.every(item => item.every(v => v.v === Number(v.inp)))
   }
 }
-// 生成逻辑
-// 初始化
-// 1 2 3 4 5 6 7 8 9
-// 2 3 4 5 6 7 8 9 1
-// 3 4 5 6 7 8 9 1 2
-// 4 5 6 7 8 9 1 2 3
-// 5 6 7 8 9 1 2 3 4
-// 6 7 8 9 1 2 3 4 5
-// 7 8 9 1 2 3 4 5 6
-// 8 9 1 2 3 4 5 6 7
-// 9 1 2 3 4 5 6 7 8
-// 移动行: genData()
-// 1 2 3 4 5 6 7 8 9  ~~(0/3) + 0 + 1
-// 4 5 6 7 8 9 1 2 3  ~~(1/3) + 3 + 1
-// 7 8 9 1 2 3 4 5 6  ~~(2/3) + 6 + 1
-// 2 3 4 5 6 7 8 9 1  ~~(3/3) + 0 + 1
-// 5 6 7 8 9 1 2 3 4  ~~(4/3) + 3 + 1
-// 8 9 1 2 3 4 5 6 7  ~~(5/3) + 6 + 1
-// 3 4 5 6 7 8 9 1 2  ~~(i/3) + (i%3)*3 + 1
-// 6 7 8 9 1 2 3 4 5
-// 9 1 2 3 4 5 6 7 8
-// 随机换行/列
-// Array.from({length: this.cellSize}, (v, i) => ~~(Math.random() * this.cellSize) + i)
-// 根据 i j 计算属于哪一块
-// 0 1 2
-// 3 4 5
-// 6 7 8
-// 0 0 -> 0
-// 2 2 -> 0
-// 0 3 -> 0
-// i j -> ~~(j/3) * 3 + ~~(i/3)
 
 // 测试数独数据生成正确性
 class TestSudoku {
